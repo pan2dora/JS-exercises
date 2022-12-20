@@ -15,6 +15,11 @@
 // prependToString('awesome', 'very') // --> 'veryawesome'
 // prependToString('world', 'hello ') // --> 'hello world'
 // prependToString('nothing', '') // --> 'nothing'
+const prependToString = (str1,str2) =>{
+    return str2+str1; 
+    }
+    console.log(prependToString('awesome', 'very'))
+
 
 // Exercise 2. Write a function called stringIncludes, which accepts two strings: the first string is a word and the second string is a single character.
 // The function should return true if the first string includes the character, otherwise it should return false.
@@ -22,6 +27,16 @@
 // Examples:
 // stringIncludes('awesome', 'e'); // --> true
 // stringIncludes('awesome', 'z'); // --> false
+const stringIncludes = (str, letter) =>{
+    for(let i = 0; i < str.length; i++) {
+            if (str[i] == letter) {
+                return true;
+            }
+        }
+        return false;
+    }
+    console.log(stringIncludes('awesome', 'a'))
+    console.log(stringIncludes('awesome', 'z'))
 
 // Exercise 3. Write a function called stringLastIndexOf, which accepts two strings: the first is a word and the second is a single character.
 // The function should return the last index at which the character exists or -1 if the character is not found.
@@ -29,6 +44,18 @@
 // Examples:
 // stringLastIndexOf('awesome', 'e'); // --> 6
 // stringLastIndexOf('awesome', 'z'); // --> -1
+
+const stringLastIndexOf = (word, char) => {
+    let lastIndex = -1
+    for (let i = 0; i < word.length; i++) {
+      if (word[i] === char) {
+         lastIndex = i
+      }
+    }
+    return lastIndex
+  }
+    
+
 
 // Exercise 4. Write a function called removeFromString, which accepts a string, a starting index (number) and a number of characters to remove.
 // The function should return a new string with the characters removed.
@@ -38,17 +65,42 @@
 // removeFromString('Hello School', 0, 6) // --> 'School'
 // removeFromString('Hello School', 2, 4) // --> 'HeSchool'
 // removeFromString('Hello School', 6, 400) // --> 'Hello '
-
+const removeFromString = (str1, num1, num2) => {
+    let str2 = str1.split("");
+    str2.splice(num1,num2)
+    let newStr = str2.join("");
+      return newStr;
+    }
+    
+    console.log(removeFromString('Elie', 2, 2)) // --> 'El'
+    console.log(removeFromString('Elie', 0, 1)) // --> 'lie'
+    console.log(removeFromString('Hello School', 0, 6)) // --> 'School'
+    console.log(removeFromString('Hello School', 2, 4)) // --> 'HeSchool'
+    console.log(removeFromString('Hello School', 6, 400)) // --> 'Hello '
 // Exercise 5. Write a function called indexOf, which accepts an array and a number.
 // The function should return the first index at which the value exists or -1 if the value is not found.
 // IMPORTANT: Do not use the built in array.indexOf() function!
 // Examples:
-// let arr = [5, 10, 15, 20];
+let arr = [5, 10, 15, 20];
 // indexOf(arr, 20); // --> 3
-// let arr2 = [1, 2, 3, 4, 5];
+let arr2 = [1, 2, 3, 4, 5];
 // indexOf(arr2, 2); // --> 1
-// let arr3 = [1, 2];
+let arr3 = [1, 2];
 // indexOf(arr3, 10); // --> -1
+
+const indexOf = (arr, num)=>{
+    let firstIndex = -1;
+    for (let i = 0;i<arr.length;i++ ){
+      if(arr[i]=== num){
+        firstIndex = i; 
+      }
+    }
+    return firstIndex
+  }
+  
+  console.log(indexOf(arr, 20))
+  console.log(indexOf(arr2, 2))
+  console.log(indexOf(arr3, 10))
 
 // Exercise 6. Write a function called includes which accepts a collection, a value, and an optional starting index. The function should return true if the value exists in the collection when we search starting from the starting index. Otherwise, it should return false.
 // The collection can be a string, an array, or an object. If the collection is a string or array, the third parameter is a starting index for where to search from. If the collection is an object, the function searches for the value among values in the object; since objects have no sort order, the third parameter is ignored.
@@ -61,3 +113,29 @@
 // includes('abcd', 'b') // --> true
 // includes('abcd', 'e') // --> false
 // includes('abcd', 'a', 2) // --> false
+function includes(collection, value, index = 0) {
+    if (typeof collection === "string" || collection instanceof Array) {
+      for (let i = index; i < collection.length; i++) {
+        if (collection[i] === value) {
+           return true;
+      }
+    }
+  }  else if (typeof collection === 'object') {
+    for (let item in collection) {
+      if (collection[item] === value) {
+        return true;
+      }
+    }
+  }
+  return false;
+  }
+  
+  
+  console.log(includes([1, 2, 3], 1)) // --> true
+  console.log(includes([1, 2, 3], 1, 2)) // --> false
+  console.log(includes([1, 2, 3], 6)) // --> false
+  console.log (includes({ 'a': 1, 'b': 2 }, 1)) // --> true
+  console.log(includes({ 'a': 1, 'b': 2 }, 'a')) // --> false
+  console.log(includes('abcd', 'b')) // --> true
+  console.log(includes('abcd', 'e')) // --> false
+  console.log(includes('abcd', 'a', 2)) // --> false
